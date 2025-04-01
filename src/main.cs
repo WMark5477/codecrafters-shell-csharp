@@ -1,8 +1,10 @@
 using System.Net;
 using System.Net.Sockets;
 
-// Uncomment this line to pass the first stage
-Console.Write("$ ");
+bool Running = false;
+Running = true;
 
-// Wait for user input
-Console.ReadLine();
+while (Running) {
+   Console.Write("$ ");
+   Console.ReadLine();
+}
