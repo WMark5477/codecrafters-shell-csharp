@@ -20,6 +20,9 @@ while (Running) {
             else
                 Console.WriteLine("exit: invalid parameter");
             break;
+        case "echo":
+            Console.WriteLine(string.Join(" ", parameters));
+            break;
         default:
             Console.WriteLine($"{command}: command not found");
             break;
