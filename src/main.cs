@@ -9,7 +9,7 @@ static bool IsExecutable(string filePath)
 
 static string? FindCommandInPath(string command)
 {
-    var paths = Environment.GetEnvironmentVariable("PATH")?.Split(';') ?? Array.Empty<string>();
+    var paths = Environment.GetEnvironmentVariable("PATH")?.Split(Path.PathSeparator) ?? Array.Empty<string>();
 
     foreach (var path in paths)
     {
