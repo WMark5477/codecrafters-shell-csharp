@@ -3,8 +3,13 @@ using System.Net.Sockets;
 
 static bool IsExecutable(string filePath)
 {
-    string[] executables = { ".exe", ".bat", ".cmd" };
-    return executables.Contains(Path.GetExtension(filePath).ToLower());
+    if (OperatingSystem.IsWindows())
+    {
+        string ext = Path.GetExtension(filePath).ToLower();
+        return ext == ".exe" || ext == ".bat" || ext == ".cmd";
+    }
+    else
+        return new FileInfo(filePath).Exists && (new FileInfo(filePath).Attributes & FileAttributes.Directory) == 0;
 }
 
 static string? FindCommandInPath(string command)
@@ -15,7 +20,7 @@ static string? FindCommandInPath(string command)
     {
         Console.WriteLine(path);
         string fullPath = Path.Combine(path, command);
-        if (File.Exists(fullPath) && IsExecutable(fullPath));
+        if (File.Exists(fullPath) && IsExecutable(fullPath)) { };
             return fullPath;
     }
 
@@ -31,7 +36,7 @@ while (Running)
 {
     Console.Write("$ ");
 
-    var input = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    var input = Console.ReadLine()?.Split(' ', StringSplitOptions.RemoveEmptyEntries);
     if (input == null || input.Length == 0) continue;
 
     var command = input[0];
