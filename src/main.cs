@@ -18,9 +18,8 @@ static string? FindCommandInPath(string command)
 
     foreach (var path in paths)
     {
-        Console.WriteLine(path);
         string fullPath = Path.Combine(path, command);
-        if (File.Exists(fullPath) && IsExecutable(fullPath)) { };
+        if (File.Exists(fullPath) && IsExecutable(fullPath))
             return fullPath;
     }
 
