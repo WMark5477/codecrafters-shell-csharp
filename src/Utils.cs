@@ -31,7 +31,7 @@ public static class Utils
     {
         var processInfo = new ProcessStartInfo
         {
-            FileName = path,
+            FileName = Path.GetFileName(path),
             Arguments = string.Join(" ", parameters),
             RedirectStandardOutput = true,
             RedirectStandardError = true,
