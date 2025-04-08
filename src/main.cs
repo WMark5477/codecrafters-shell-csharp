@@ -28,6 +28,9 @@ while (true)
         case Builtins.Type:
             Builtins.TypeCommand(parameters); break;
 
+        case Builtins.PWD:
+            Builtins.PWDCommand(); break;
+
         default:
             Console.WriteLine($"{command}: command not found"); break;
     }
