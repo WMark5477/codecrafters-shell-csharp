@@ -48,7 +48,7 @@ public static class Utils
 
         string output = process.StandardOutput.ReadToEnd();
         string error = process.StandardError.ReadToEnd();
-
+        
         process.WaitForExit();
 
         if (!string.IsNullOrEmpty(output))
