@@ -11,6 +11,12 @@ while (true)
     var command = input[0].ToLower(); ;
     var parameters = input.Length > 1 ? input[1..] : Array.Empty<string>();
 
+    if (!Builtins.BuiltinCommands.Contains(command) && Utils.FindCommandInPath(command) is string path)
+    {
+        Utils.RunProcess(path, parameters);
+        continue;
+    }
+
     switch (command)
     {
         case Builtins.Exit:
