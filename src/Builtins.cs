@@ -66,6 +66,10 @@ public static class Builtins
             return;
         }
         string path = parameters[0];
+        if (path == "~")
+        {
+            path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        }
         try
         {
             Environment.CurrentDirectory = Path.GetFullPath(path);
