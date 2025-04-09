@@ -31,6 +31,8 @@ while (true)
         case Builtins.PWD:
             Builtins.PWDCommand(); break;
 
+        case Builtins.CD:
+            Builtins.CDCommand(parameters); break;
         default:
             Console.WriteLine($"{command}: command not found"); break;
     }

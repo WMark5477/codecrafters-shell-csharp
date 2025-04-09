@@ -1,16 +1,20 @@
-﻿public static class Builtins
+﻿using System.Security.Cryptography.X509Certificates;
+
+public static class Builtins
 {
     public const string Exit = "exit";
     public const string Echo = "echo";
     public const string Type = "type";
     public const string PWD = "pwd";
+    public const string CD = "cd";
 
     public static readonly string[] BuiltinCommands =
     {
         Exit,
         Echo,
         Type,
-        PWD
+        PWD,
+        CD
     };
 
     public static void ExitCommand(string[] parameters)
@@ -24,7 +28,7 @@
         else
             Console.WriteLine("exit: invalid parameter");
     }
-    
+
     public static void EchoCommand(string[] parameters)
     {
         Console.WriteLine(string.Join(" ", parameters));
@@ -53,4 +57,23 @@
     {
         Console.WriteLine(Environment.CurrentDirectory);
     }
+
+    public static void CDCommand(string[] parameters)
+    {
+        if (parameters.Length == 0)
+        {
+            Console.WriteLine("cd: missing parameter");
+            return;
+        }
+        string path = parameters[0];
+        try
+        {
+            Environment.CurrentDirectory = Path.GetFullPath(path);
+        }
+        catch (DirectoryNotFoundException)
+        {
+            Console.WriteLine($"cd: {path}: No such file or directory");
+        }
+    }
+        
 }
