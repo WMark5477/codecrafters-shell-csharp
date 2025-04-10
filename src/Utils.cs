@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text;
 
 public static class Utils
 {
@@ -52,5 +53,51 @@ public static class Utils
             Console.WriteLine(output.Trim());
         
         process.WaitForExit();
+    }
+
+    public static string[] ParseInput(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+            return Array.Empty<string>();
+        input = input.Trim();
+        var sb = new StringBuilder();
+        var inSingleQuotes = false; // true
+        var isSeparated = false; // false
+        foreach (var c in input)
+        {
+            if (c == '\'')
+            {
+                inSingleQuotes = !inSingleQuotes;
+                continue;
+            }
+            if (inSingleQuotes)
+            {
+                sb.Append(c);
+            }
+            else
+            {
+                if (c != ' ')
+                {
+                    isSeparated = false;
+                    sb.Append(c);
+                    continue;
+                }
+                if (!isSeparated)
+                {
+                    sb.Append('\n');
+                    isSeparated = true;
+                    continue;
+                }
+            }
+            // echo asda   '   dsa'  ''
+            // echo asda    dsa 
+
+        }
+        if (inSingleQuotes)
+        {
+            return Array.Empty<string>();
+        }
+        var result = sb.ToString().Split('\n');
+        return result;
     }
 }
