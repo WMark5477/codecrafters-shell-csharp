@@ -28,7 +28,7 @@ public static class Utils
         return null;
     }
     
-    public static void RunProcess(string path, string[] parameters)
+    public static async void RunProcess(string path, string[] parameters)
     {
         for (int i = 0; i < parameters.Length; i++)
         {
@@ -55,10 +55,10 @@ public static class Utils
             return;
         }
 
-        string output = process.StandardOutput.ReadToEnd();
+        string output = await process.StandardOutput.ReadToEndAsync();
 
         if (!string.IsNullOrEmpty(output))
-            Console.WriteLine(output.Trim() + "DEBUG");
+            Console.WriteLine(output.Trim());
         
         process.WaitForExit();
     }
