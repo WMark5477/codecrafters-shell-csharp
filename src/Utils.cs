@@ -61,12 +61,13 @@ public static class Utils
             return Array.Empty<string>();
         input = input.Trim();
         var sb = new StringBuilder();
-        var inSingleQuotes = false; // true
-        var isSeparated = false; // false
+        var inSingleQuotes = false;
+        var isSeparated = false;
         foreach (var c in input)
         {
             if (c == '\'')
             {
+                isSeparated = false;
                 inSingleQuotes = !inSingleQuotes;
                 continue;
             }
@@ -89,10 +90,8 @@ public static class Utils
                     continue;
                 }
             }
-            // echo asda   '   dsa'  ''
-            // echo asda    dsa 
-
         }
+
         if (inSingleQuotes)
         {
             return Array.Empty<string>();
