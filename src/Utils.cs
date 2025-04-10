@@ -58,7 +58,7 @@ public static class Utils
         string output = process.StandardOutput.ReadToEnd();
 
         if (!string.IsNullOrEmpty(output))
-            Console.WriteLine(output.Trim());
+            Console.WriteLine(output.Trim() + "DEBUG");
         
         process.WaitForExit();
     }
