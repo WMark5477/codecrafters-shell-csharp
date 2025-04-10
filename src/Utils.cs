@@ -57,11 +57,9 @@ public static class Utils
 
         string output = process.StandardOutput.ReadToEnd();
 
-        Console.WriteLine("DEBUG1");
-        Console.WriteLine($"null: {output == null} + string: {output == ""} + {output}");
         if (!string.IsNullOrEmpty(output))
             Console.WriteLine(output.Trim());
-        Console.WriteLine("DEBUG2");
+
         process.WaitForExit();
     }
 
