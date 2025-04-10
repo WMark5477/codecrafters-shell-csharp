@@ -34,7 +34,7 @@ public static class Utils
         {
             if (parameters[i].Contains(' '))
             {
-                parameters[i] = $"\'{parameters[i]}\'";
+                parameters[i] = $"\"{parameters[i]}\"";
             }
         }
        
