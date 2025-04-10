@@ -30,6 +30,14 @@ public static class Utils
     
     public static void RunProcess(string path, string[] parameters)
     {
+        for (int i = 0; i < parameters.Length; i++)
+        {
+            if (parameters[i].Contains(' '))
+            {
+                parameters[i] = $"\'{parameters[i]}\'";
+            }
+        }
+       
         var processInfo = new ProcessStartInfo
         {
             FileName = Path.GetFileName(path),
